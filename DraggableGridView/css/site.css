@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.droppable
+{
+    text-align: center;
+    border: 1px dashed #66CCFF;
+    padding: 10px;
+}
+
+.ui-draggable-helper {
+	border: 1px dotted #000;
+	padding: 6px;
+	background: #fff;
+	font-size: 1.2em;
+}
+
+.hover
+{
+    border: 2px solid #66CCFF;
+    background-color: #EAF9FF;
+    padding: 9px;
+}
+
+.hide {
+    display: none;
+}
