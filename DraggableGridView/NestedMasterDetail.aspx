@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MasterDetail.aspx.cs" Inherits="DraggableGridView.MasterDetail" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NestedMasterDetail.aspx.cs" Inherits="DraggableGridView.NestedMasterDetail" %>
 <%@ Register TagPrefix="dx" Namespace="DevExpress.Web.ASPxGlobalEvents" Assembly="DevExpress.Web.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 <%@ Register TagPrefix="dxwgv" Namespace="DevExpress.Web.ASPxGridView" Assembly="DevExpress.Web.ASPxGridView.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 
@@ -13,12 +12,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <dxwgv:ASPxGridView runat="server" ID="MasterGrid" OnDataBound="MasterGrid_DataBound" KeyFieldName="CategoryID" OnCustomCallback="MasterGrid_CustomCallback" ClientInstanceName="MasterGrid" 
-            DataSourceID="masterDataSource" OnHtmlRowPrepared="MasterGrid_HtmlRowPrepared">
-                <ClientSideEvents EndCallback="function(s,e){ if (s.cpIsCustomCallback) {s.cpIsCustomCallback = false;MasterGrid.Refresh();} }"></ClientSideEvents>
+    <div class="theGridDiv">
+            <dxwgv:ASPxGridView runat="server" ID="MasterGrid" OnDataBound="MasterGrid_DataBound" KeyFieldName="CategoryID" ClientInstanceName="MasterGrid" DataSourceID="masterDataSource">
                 <Columns>
-                    <dxwgv:GridViewDataColumn CellStyle-CssClass="theCategoryID" FieldName="CategoryID" VisibleIndex="0" />
+                    <dxwgv:GridViewDataColumn FieldName="CategoryID" VisibleIndex="0" />
                     <dxwgv:GridViewDataColumn FieldName="CategoryName" VisibleIndex="1" />
                     <dxwgv:GridViewDataColumn CellStyle-CssClass="theOrder hide" FieldName="Order" VisibleIndex="2" HeaderStyle-CssClass="hide" />
                 </Columns>
@@ -28,7 +25,8 @@
                             <dxwgv:ASPxGridView runat="server" ClientInstanceName="DetailGrid" ID="DetailGrid" KeyFieldName="ProductID" 
                                 DataSourceID="detailDataSource" OnHtmlRowPrepared="DetailGrid_HtmlRowPrepared" 
                                 OnBeforePerformDataSelect="DetailGrid_BeforePerformDataSelect" OnInit="DetailGrid_Init"
-                                OnCustomCallback="DetailGrid_CustomCallback" OnAfterPerformCallback="DetailGrid_AfterPerformCallback">
+                                OnCustomCallback="DetailGrid_CustomCallback" OnAfterPerformCallback="DetailGrid_AfterPerformCallback"
+                                OnHtmlRowCreated="DetailGrid_HtmlRowCreated">
                                 <ClientSideEvents EndCallback="function(s,e){ if (s.cpIsCustomCallback) {s.cpIsCustomCallback = false;MasterGrid.Refresh();} }"
                                     ></ClientSideEvents>
                                 <Columns>
@@ -57,7 +55,7 @@
             </SelectParameters>
         </asp:ObjectDataSource>
         <dx:ASPxGlobalEvents ID="ge" runat="server">
-            <ClientSideEvents ControlsInitialized="InitializejQuery" EndCallback="InitializejQuery" />
+            <ClientSideEvents ControlsInitialized="InitializeNestedjQuery" EndCallback="InitializeNestedjQuery" />
         </dx:ASPxGlobalEvents>
     </form>
 </body>

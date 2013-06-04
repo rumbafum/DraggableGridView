@@ -87,6 +87,7 @@
     <Content Include="DevExpress\DevExpress.Web.ASPxGridView.v12.1.dll" />
     <Content Include="DevExpress\DevExpress.Web.v12.1.dll" />
     <Content Include="MasterDetail.aspx" />
+    <Content Include="NestedMasterDetail.aspx" />
     <Content Include="Scripts\DraggableGridView.js" />
     <Content Include="Scripts\jquery-1.6.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.custom.min.js" />
@@ -107,6 +108,13 @@
     </Compile>
     <Compile Include="MasterDetail.aspx.designer.cs">
       <DependentUpon>MasterDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NestedMasterDetail.aspx.cs">
+      <DependentUpon>NestedMasterDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NestedMasterDetail.aspx.designer.cs">
+      <DependentUpon>NestedMasterDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

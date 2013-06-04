@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using DevExpress.Web.ASPxGridView;
 using DraggableGridView.Data;
 
 namespace DraggableGridView
 {
-    public partial class MasterDetail : Page
+    public partial class NestedMasterDetail : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,7 +39,6 @@ namespace DraggableGridView
             var detailGridView = (ASPxGridView)sender;
             var templateContainer = (GridViewDetailRowTemplateContainer)detailGridView.NamingContainer;
             var splited = e.Parameters.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-            if (splited.Length != 3) return;
 
             Products.UpdateProductCategory(Convert.ToInt32(splited[1]), Convert.ToInt32(splited[0]), Convert.ToInt32(splited[2]), Convert.ToInt32(templateContainer.KeyValue));
             detailGridView.DataBind();
@@ -53,19 +56,8 @@ namespace DraggableGridView
             gv.JSProperties["cpIsCustomCallback"] = e.CallbackName == "CUSTOMCALLBACK";
         }
 
-        protected void MasterGrid_CustomCallback(object sender, ASPxGridViewCustomCallbackEventArgs e)
+        protected void DetailGrid_HtmlRowCreated(object sender, ASPxGridViewTableRowEventArgs e)
         {
-            var splited = e.Parameters.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-            if (splited.Length != 2) return;
-
-            Categories.UpdateCategory(Convert.ToInt32(splited[0]), Convert.ToInt32(splited[1]));
-            MasterGrid.DataBind();
-        }
-
-        protected void MasterGrid_HtmlRowPrepared(object sender, ASPxGridViewTableRowEventArgs e)
-        {
-            if (e.RowType == GridViewRowType.Data)
-                e.Row.CssClass = e.Row.CssClass + " masterDraggable";
         }
     }
 }
