@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
         <div>
             <dxwgv:ASPxGridView runat="server" ID="MasterGrid" OnDataBound="MasterGrid_DataBound" KeyFieldName="CategoryID" OnCustomCallback="MasterGrid_CustomCallback" ClientInstanceName="MasterGrid" 
-            DataSourceID="masterDataSource" OnHtmlRowPrepared="MasterGrid_HtmlRowPrepared">
+            DataSourceID="masterDataSource">
                 <ClientSideEvents EndCallback="function(s,e){ if (s.cpIsCustomCallback) {s.cpIsCustomCallback = false;MasterGrid.Refresh();} }"></ClientSideEvents>
                 <Columns>
                     <dxwgv:GridViewDataColumn CellStyle-CssClass="theCategoryID" FieldName="CategoryID" VisibleIndex="0" />
@@ -24,10 +24,9 @@
                 </Columns>
                 <Templates>
                     <DetailRow>
-                        <div class="droppable sortable">
+                        <div class="droppable">
                             <dxwgv:ASPxGridView runat="server" ClientInstanceName="DetailGrid" ID="DetailGrid" KeyFieldName="ProductID" 
-                                DataSourceID="detailDataSource" OnHtmlRowPrepared="DetailGrid_HtmlRowPrepared" 
-                                OnBeforePerformDataSelect="DetailGrid_BeforePerformDataSelect" OnInit="DetailGrid_Init"
+                                DataSourceID="detailDataSource" OnBeforePerformDataSelect="DetailGrid_BeforePerformDataSelect" OnInit="DetailGrid_Init"
                                 OnCustomCallback="DetailGrid_CustomCallback" OnAfterPerformCallback="DetailGrid_AfterPerformCallback">
                                 <ClientSideEvents EndCallback="function(s,e){ if (s.cpIsCustomCallback) {s.cpIsCustomCallback = false;MasterGrid.Refresh();} }"
                                     ></ClientSideEvents>

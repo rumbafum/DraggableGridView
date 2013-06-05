@@ -17,12 +17,6 @@ namespace DraggableGridView
             Session["CategoryID"] = (sender as ASPxGridView).GetMasterRowKeyValue();
         }
 
-        protected void DetailGrid_HtmlRowPrepared(object sender, ASPxGridViewTableRowEventArgs e)
-        {
-            if (e.RowType == GridViewRowType.Data)
-                e.Row.CssClass = "draggable";
-        }
-
         protected void DetailGrid_Init(object sender, EventArgs e)
         {
             ASPxGridView detailGridView = (ASPxGridView)sender;
@@ -60,12 +54,6 @@ namespace DraggableGridView
 
             Categories.UpdateCategory(Convert.ToInt32(splited[0]), Convert.ToInt32(splited[1]));
             MasterGrid.DataBind();
-        }
-
-        protected void MasterGrid_HtmlRowPrepared(object sender, ASPxGridViewTableRowEventArgs e)
-        {
-            if (e.RowType == GridViewRowType.Data)
-                e.Row.CssClass = e.Row.CssClass + " masterDraggable";
         }
     }
 }
